@@ -1,0 +1,98 @@
+#!/usr/bin/env sh
+
+# the scripting-addition must be loaded manually if
+# you are running yabai on macOS Big Sur. Uncomment
+# the following line to have the injection performed
+# when the config is executed during startup.
+#
+# for this to work you must configure sudo such that
+# it will be able to run the command without password
+#
+# see this wiki page for information:
+#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)
+#
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+# global settings
+yabai -m config debug_output                 on
+yabai -m config mouse_follows_focus          off
+yabai -m config focus_follows_mouse          off
+yabai -m config window_placement             second_child
+yabai -m config window_topmost               off
+yabai -m config window_shadow                off
+yabai -m config window_opacity               on
+yabai -m config window_opacity_duration      0.0
+yabai -m config active_window_opacity        1.0
+yabai -m config normal_window_opacity        1.0
+
+# [ming] borders get hidden behind window when changing focus
+yabai -m config window_border                off
+yabai -m config window_border_width          10
+yabai -m config active_window_border_color   0xff775759
+yabai -m config normal_window_border_color   0xff555555
+yabai -m config insert_feedback_color        0xffd75f5f
+
+yabai -m config split_ratio                  0.50
+yabai -m config auto_balance                 off
+yabai -m config mouse_modifier               fn
+yabai -m config mouse_action1                move
+yabai -m config mouse_action2                resize
+yabai -m config mouse_drop_action            stack
+
+# general space settings
+yabai -m config layout                       bsp
+yabai -m config top_padding    0
+yabai -m config bottom_padding 0
+
+# [ming] make space for stackline icons
+yabai -m config left_padding   40
+yabai -m config right_padding  40
+yabai -m config window_gap     10
+
+# [ming] add padding at top so vertical splits don't overlap
+yabai -m config external_bar all:40:10
+
+# space configurations
+# # mission-control desktop labels
+yabai -m space 1 --label D1
+yabai -m space 2 --label mail
+yabai -m space 3 --label D2
+yabai -m space 4 --label main
+yabai -m space 5 --label media
+yabai -m space 6 --label social
+yabai -m space 7 --label games
+yabai -m space 8 --label misc
+#
+# # specific space settings
+yabai -m config --space mail  layout        stack
+yabai -m config --space games layout        float
+yabai -m config --space misc layout        float
+
+
+# window rules
+yabai -m rule --add app="^Mail$" space=mail
+yabai -m rule --add app="^Calendar$" space=mail
+yabai -m rule --add app="^Slack$" space=main
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^LastPass$" manage=off
+yabai -m rule --add app="^Take a Break$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Spotify$" space=media
+yabai -m rule --add app="^Discord$" space=games grid=1:1:0:0:1:1 manage=off
+yabai -m rule --add app="^Steam$" space=games manage=off
+yabai -m rule --add app="Preferences$" manage=off
+yabai -m rule --add app="^Messages$" space=social
+yabai -m rule --add app="^Messenger$" space=social
+yabai -m rule --add app="^FaceTime$" space=social manage=off
+yabai -m rule --add app="^zoom.us$" space=social manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
+
+# signals
+# [ming] from https://github.com/koekeishiya/dotfiles/blob/master/yabai/yabairc
+# yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
+# yabai -m signal --add event=window_destroyed action="echo \"destroyed window with id \$YABAI_WINDOW_ID\""
+# yabai -m signal --add event=space_changed action="echo \"changed space \$YABAI_RECENT_SPACE_ID -> \$YABAI_SPACE_ID\""
+# yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
+
+echo "yabai configuration loaded.."

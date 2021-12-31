@@ -1,0 +1,118 @@
+"*":
+  "ascii-tree":
+    characters:
+      rootPrefix: true
+  "atom-ide-ui":
+    "atom-ide-diagnostics-ui": {}
+    "atom-ide-find-references":
+      defaultLocationForPane: "center"
+    "atom-ide-outline-view":
+      nameOnly: true
+    "atom-ide-terminal": {}
+    hyperclick:
+      darwinTriggerKeys: "altKey,metaKey"
+    use:
+      "atom-ide-outline-view": "never"
+  "autocomplete-plus":
+    confirmCompletion: "tab always, enter when suggestion explicitly selected"
+  "autocomplete-python":
+    useKite: false
+  core:
+    audioBeep: false
+    closeDeletedFileTabs: true
+    disabledPackages: [
+      "python-autopep8"
+      "linter-pylint"
+      "linter-js-yaml"
+      "teletype"
+      "linter-flake8"
+      "autocomplete"
+      "language-gfm"
+      "atom-ide-ui"
+    ]
+    packagesWithKeymapsDisabled: [
+      "nc-gcode"
+    ]
+    restorePreviousWindowsOnStart: "no"
+    telemetryConsent: "no"
+  "docblock-python":
+    raises: true
+    style: "google"
+  editor:
+    showIndentGuide: true
+    softWrap: true
+    tabLength: 4
+  "exception-reporting":
+    userId: "c457bdc2-9bea-4616-bf1d-7c8a495137af"
+  "git-blame":
+    columnWidth: 322
+    ignoreWhiteSpaceDiffs: true
+  "ide-python":
+    pylsPlugins:
+      autopep8:
+        enabled: false
+      flake8:
+        enabled: true
+        maxLineLength: 120
+      jedi_definition:
+        follow_builtin_imports: true
+        follow_imports: true
+      mccabe:
+        enabled: false
+      pycodestyle:
+        enabled: false
+        ignore: [
+          "E121"
+          "E123"
+          "E126"
+          "E226"
+          "E24"
+          "E704"
+          "W503"
+          "E302"
+          "E402"
+          "E305"
+          "E501"
+        ]
+      pydocstyle: {}
+      pyflakes:
+        enabled: false
+      pylint:
+        args: [
+          "--disable=C0325"
+        ]
+        enabled: true
+      rope_completion: {}
+      yapf: {}
+  kite:
+    showWelcomeNotificationOnStartup: false
+  "linter-flake8":
+    ignoreErrorCodes: [
+      "E302"
+      "E401"
+      "E201"
+    ]
+    maxLineLength: 150
+    pycodestyleErrorsToWarnings: true
+  "linter-pycodestyle":
+    convertAllErrorsToWarnings: false
+  "linter-ui-default":
+    panelHeight: 300
+    showPanel: true
+  minimap:
+    plugins:
+      "split-diff": true
+      "split-diffDecorationsZIndex": 0
+  scratch:
+    autosave: true
+  "split-diff":
+    ignoreWhitespace: true
+  tablr:
+    csvEditor:
+      header: true
+      skipEmptyLines: true
+  "todo-show":
+    sortBy: "Type"
+  "tree-view": {}
+  welcome:
+    showOnStartup: false
