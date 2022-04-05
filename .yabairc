@@ -28,10 +28,10 @@ yabai -m config normal_window_opacity        1.0
 
 # [ming] borders get hidden behind window when changing focus
 yabai -m config window_border                off
-yabai -m config window_border_width          10
-yabai -m config active_window_border_color   0xff775759
-yabai -m config normal_window_border_color   0xff555555
-yabai -m config insert_feedback_color        0xffd75f5f
+yabai -m config window_border_width          1
+# yabai -m config active_window_border_color   0xff775759
+# yabai -m config normal_window_border_color   0xff555555
+# yabai -m config insert_feedback_color        0xffd75f5f
 
 yabai -m config split_ratio                  0.50
 yabai -m config auto_balance                 off
@@ -51,42 +51,39 @@ yabai -m config right_padding  40
 yabai -m config window_gap     10
 
 # [ming] add padding at top so vertical splits don't overlap
-yabai -m config external_bar all:40:10
+yabai -m config external_bar all:35:10
 
 # space configurations
-# # mission-control desktop labels
-yabai -m space 1 --label D1
-yabai -m space 2 --label mail
-yabai -m space 3 --label D2
-yabai -m space 4 --label main
-yabai -m space 5 --label media
-yabai -m space 6 --label social
-yabai -m space 7 --label games
-yabai -m space 8 --label misc
-#
-# # specific space settings
-yabai -m config --space mail  layout        stack
-yabai -m config --space games layout        float
-yabai -m config --space misc layout        float
+# mission-control desktop labels
+# yabai -m space 1 --label mail
+# yabai -m space 2 --label main
+# yabai -m space 3 --label media
+# yabai -m space 4 --label misc
+
+# specific space settings
+yabai -m config --space 1 layout        float
+yabai -m config --space 3 layout        float
+yabai -m config --space 4 layout        float
 
 
 # window rules
-yabai -m rule --add app="^Mail$" space=mail
-yabai -m rule --add app="^Calendar$" space=mail
-yabai -m rule --add app="^Slack$" space=main
-yabai -m rule --add app="^Calculator$" manage=off
+# yabai -m rule --add app="^Mail$" space=mail
+# yabai -m rule --add app="^Calendar$" space=mail
+# yabai -m rule --add app="^Slack$" space=main
+yabai -m rule --add app="^Calculator$" manage=on
 yabai -m rule --add app="^LastPass$" manage=off
+yabai -m rule --add app="^1Password" manage=off
 yabai -m rule --add app="^Take a Break$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
-yabai -m rule --add app="^Spotify$" space=media
-yabai -m rule --add app="^Discord$" space=games grid=1:1:0:0:1:1 manage=off
-yabai -m rule --add app="^Steam$" space=games manage=off
+# yabai -m rule --add app="^Spotify$" space=media manage=on
+yabai -m rule --add app="^Discord$" space=3 grid=1:1:0:0:1:1 manage=off
+yabai -m rule --add app="^Steam$" space=3 manage=off
 yabai -m rule --add app="Preferences$" manage=off
-yabai -m rule --add app="^Messages$" space=social
-yabai -m rule --add app="^Messenger$" space=social
-yabai -m rule --add app="^FaceTime$" space=social manage=off
-yabai -m rule --add app="^zoom.us$" space=social manage=off
+yabai -m rule --add app="^Messenger$" space=4
+yabai -m rule --add app="^FaceTime$" space=4 manage=off
+yabai -m rule --add app="^zoom.us$" space=4 manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
+yabai -m rule --add app="Messages" manage=off
 
 # signals
 # [ming] from https://github.com/koekeishiya/dotfiles/blob/master/yabai/yabairc

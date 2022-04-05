@@ -12,6 +12,9 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/ming/.oh-my-zsh"
 
+# VARIABLES
+MINGLOGS="${HOME}/tools/minglogs/"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -129,6 +132,19 @@ alias cds="cd ~/PycharmProjects"
 # bare git repo for dotfiles
 alias dotgit='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
+
+# Functions
+
+# Open file for editing in vim from kitty terminal
+vimkt ()
+{
+    kitty --single-instance sh -c "vim $1" > ${MINGLOGS}/kitty_vim_log.txt 2>&1 &
+}
+
+# vimal ()
+# {
+# 	alacritty -e vim $1 > ${MINGLOGS}/ming_alacritty_log.txt 2>&1 &
+# }
 . /opt/homebrew/lib/python3.9/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
