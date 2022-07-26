@@ -1,6 +1,6 @@
 
 # open apps
-alt - return : open -a "/Applications/iTerm.app"
+# alt - return : open -a "/Applications/iTerm.app"
 
 # focus window
 alt - h : yabai -m window --focus west
@@ -53,17 +53,17 @@ ctrl + alt + cmd - up     : yabai -m window --grid 1:1:0:0:1:1
 ctrl + alt + cmd - left   : yabai -m window --grid 1:2:0:0:1:1
 ctrl + alt + cmd - right  : yabai -m window --grid 1:2:2:0:1:1
 
-# focus monitor (sometimes this doesn't work for some reason)
+# focus other monitor
 ctrl + alt - z  : yabai -m display --focus next || yabai -m display --focus first
-ctrl + alt - 1  : yabai -m display --focus 1
-ctrl + alt - 2  : yabai -m display --focus 2
 
 # send window to other monitor and follow focus
-ctrl + alt - n  : win_id="$(yabai -m query --windows --window | jq -r '.id')" \
+ctrl + alt + cmd  - n  : win_id="$(yabai -m query --windows --window | jq -r '.id')" \
 	&& (yabai -m window --display next || yabai -m window --display first) \
 	&& disp_id="$(yabai -m query --displays --display | jq -r '.id')" \
     && yabai -m window --focus "$win_id"
 
+# send space to other monitor
+ctrl + alt - n : yabai -m space --display next || yabai -m space --display first
 
 # set insertion point in focused container (splits window)
 ctrl + alt + shift - h : yabai -m window --insert west
@@ -132,7 +132,10 @@ shift + alt - tab : yabai -m window --focus "$(yabai -m query --windows --space 
 
 
 # float / unfloat window and center on screen
-alt - t : yabai -m window --toggle float
+alt - t : yabai -m window --toggle float && yabai -m window --grid 4:4:1:1:2:2
+
+# bring window to center of screen and hide everything else
+alt - w : yabai -m window --toggle expose
 
 # toggle sticky(+float), topmost, picture-in-picture
 alt - p : yabai -m window --toggle sticky;\

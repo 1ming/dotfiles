@@ -51,7 +51,7 @@ yabai -m config right_padding  40
 yabai -m config window_gap     10
 
 # [ming] add padding at top so vertical splits don't overlap
-yabai -m config external_bar all:35:10
+yabai -m config external_bar all:10:10
 
 # space configurations
 # mission-control desktop labels
@@ -61,9 +61,10 @@ yabai -m config external_bar all:35:10
 # yabai -m space 4 --label misc
 
 # specific space settings
-yabai -m config --space 1 layout        float
-yabai -m config --space 3 layout        float
-yabai -m config --space 4 layout        float
+# yabai -m config --space 1 layout        float
+# yabai -m config --space 3 layout        float
+# yabai -m config --space 4 layout        float
+# yabai -m config --space 5 layout        float
 
 
 # window rules
@@ -76,12 +77,12 @@ yabai -m rule --add app="^1Password" manage=off
 yabai -m rule --add app="^Take a Break$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
 # yabai -m rule --add app="^Spotify$" space=media manage=on
-yabai -m rule --add app="^Discord$" space=3 grid=1:1:0:0:1:1 manage=off
-yabai -m rule --add app="^Steam$" space=3 manage=off
+yabai -m rule --add app="^Discord$" grid=1:1:0:0:1:1 manage=off
+# yabai -m rule --add app="^Steam$" space=5 manage=off
 yabai -m rule --add app="Preferences$" manage=off
-yabai -m rule --add app="^Messenger$" space=4
-yabai -m rule --add app="^FaceTime$" space=4 manage=off
-yabai -m rule --add app="^zoom.us$" space=4 manage=off
+# yabai -m rule --add app="^Messenger$" space=4
+# yabai -m rule --add app="^FaceTime$" space=4 manage=off
+# yabai -m rule --add app="^zoom.us$" space=4 manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
 yabai -m rule --add app="Messages" manage=off
 
