@@ -47,7 +47,7 @@ ctrl + alt + cmd - k    : yabai -m window north --stack $(yabai -m query --windo
 ctrl + alt + cmd - l : yabai -m window east --stack $(yabai -m query --windows --window | jq -r '.id')
 
 # make floating window fill screen
-ctrl + alt + cmd - up     : yabai -m window --grid 1:1:0:0:1:1
+ctrl + alt + cmd - m     : yabai -m window --grid 1:1:0:0:1:1
 
 # make floating window fill left-half of screen
 ctrl + alt + cmd - left   : yabai -m window --grid 1:2:0:0:1:1
