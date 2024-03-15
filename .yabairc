@@ -11,8 +11,8 @@
 # see this wiki page for information:
 #  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)
 #
-sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
 
 # global settings
 yabai -m config debug_output                 on
@@ -68,29 +68,44 @@ yabai -m config external_bar all:10:10
 
 
 # window rules
-# yabai -m rule --add app="^Mail$" space=mail
-# yabai -m rule --add app="^Calendar$" space=mail
-# yabai -m rule --add app="^Slack$" space=main
-yabai -m rule --add app="^Calculator$" manage=on
-yabai -m rule --add app="^LastPass$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^1Password" manage=off
-yabai -m rule --add app="^Take a Break$" manage=off
-yabai -m rule --add app="^Finder$" manage=off
-# yabai -m rule --add app="^Spotify$" space=media manage=on
+yabai -m rule --add app="^Finder$" manage=off sticky=off
 yabai -m rule --add app="^Discord$" grid=1:1:0:0:1:1 manage=off
-# yabai -m rule --add app="^Steam$" space=5 manage=off
 yabai -m rule --add app="Preferences$" manage=off
-# yabai -m rule --add app="^Messenger$" space=4
-# yabai -m rule --add app="^FaceTime$" space=4 manage=off
-# yabai -m rule --add app="^zoom.us$" space=4 manage=off
+yabai -m rule --add title="Preferences$" manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
 yabai -m rule --add app="Messages" manage=off
+yabai -m rule --add title="^Honorlock Proctoring$" manage=off
+yabai -m rule --add app="Things" title="General" manage=off
+yabai -m rule --add app="System Settings" manage=off
+yabai -m rule --add app="ToothFairy" manage=off
+yabai -m rule --add app="Tot" manage=off
+yabai -m rule --add app="Bartender 4" manage=off
+yabai -m rule --add app="Dictionary" manage=off
+yabai -m rule --add app="App Store" manage=off
+yabai -m rule --add app="VMware Fusion" manage=off
+yabai -m rule --add app="PyCharm" manage=off
+yabai -m rule --add app="Microsoft Teams" manage=off
+yabai -m rule --add app="Installer" manage=off
+yabai -m rule --add app="Steam Helper" manage=off
+yabai -m rule --add app="RuneLite" manage=off
+yabai -m rule --add app="Jagex Launcher" manage=off
+yabai -m rule --add app="TestFlight" manage=off
+yabai -m rule --add app="Parallels" manage=off
+yabai -m rule --add app="mingtest" manage=off  # mame stuff
+yabai -m rule --add app="rc87" manage=off  # mame stuff
 
-# signals
-# [ming] from https://github.com/koekeishiya/dotfiles/blob/master/yabai/yabairc
-# yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
-# yabai -m signal --add event=window_destroyed action="echo \"destroyed window with id \$YABAI_WINDOW_ID\""
-# yabai -m signal --add event=space_changed action="echo \"changed space \$YABAI_RECENT_SPACE_ID -> \$YABAI_SPACE_ID\""
-# yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
+# fix floating windows from always being on top
+# https://github.com/koekeishiya/yabai/issues/1929#issuecomment-1872581528
+# [ming] i had to put "below" instead of normal since jankyborders doesn't update the focused window correctly. not sure why since it was supposed to be fixed? https://github.com/koekeishiya/yabai/issues/2062
+# yabai -m rule --add app=".*" sub-layer=normal
+yabai -m rule --add app=".*" sub-layer=below
+
+# jankyborders
+borders active_color='gradient(top_left=0xff4FFFB6,bottom_right=0xffC3BFFF)' inactive_color=0x00000000 width=8 hidpi=on
+
+
+
 
 echo "yabai configuration loaded.."
