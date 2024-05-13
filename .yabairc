@@ -95,12 +95,13 @@ yabai -m rule --add app="TestFlight" manage=off
 yabai -m rule --add app="Parallels" manage=off
 yabai -m rule --add app="mingtest" manage=off  # mame stuff
 yabai -m rule --add app="rc87" manage=off  # mame stuff
+yabai -m rule --add app="Microsoft Outlook" title="^New Event" manage=off
+yabai -m rule --add app="Microsoft Outlook" title="Settings$" manage=off
+yabai -m rule --add app="Microsoft Outlook" title="Extensions" manage=off
 
 # fix floating windows from always being on top
 # https://github.com/koekeishiya/yabai/issues/1929#issuecomment-1872581528
-# [ming] i had to put "below" instead of normal since jankyborders doesn't update the focused window correctly. not sure why since it was supposed to be fixed? https://github.com/koekeishiya/yabai/issues/2062
-# yabai -m rule --add app=".*" sub-layer=normal
-yabai -m rule --add app=".*" sub-layer=below
+yabai -m rule --add app=".*" sub-layer=normal
 
 # jankyborders
 borders active_color='gradient(top_left=0xff4FFFB6,bottom_right=0xffC3BFFF)' inactive_color=0x00000000 width=8 hidpi=on
