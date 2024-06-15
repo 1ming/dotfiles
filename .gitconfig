@@ -14,3 +14,5 @@ lg = !"git lg1"
 	clean = git-lfs clean -- %f
 [init]
 	defaultBranch = main
+[credential]
+	helper = cache --timeout=604800

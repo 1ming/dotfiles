@@ -7,13 +7,15 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/opt/homebrew/opt/python@3.9/libexec/bin:/opt/homebrew/bin:/usr/local/opt/python/libexec/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/ming/.oh-my-zsh"
 
 # VARIABLES
 MINGLOGS="${HOME}/tools/minglogs/"
+VENVPATH="${HOME}/venvs"
+PYTHONPATH_BREW="/opt/homebrew/bin/python3"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -83,7 +85,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+# [ming] added docker plugin to enable tab completion
+plugins=(git docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -115,8 +118,11 @@ bindkey \^U backward-kill-line
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias zshconfig="atom ~/.zshrc"
-alias zshreload="source ~/.zshrc"
+
+# enable man pages for built-ins on zsh
+# https://unix.stackexchange.com/a/721067
+alias zconfig="vim ~/.zshrc"
+alias zreload="source ~/.zshrc"
 
 # intel version of brew installed
 # https://diewland.medium.com/how-to-install-python-3-7-on-macbook-m1-87c5b0fcb3b5
@@ -125,13 +131,30 @@ alias ibrew="arch -x86_64 /usr/local/bin/brew"
 # python venvs
 alias ve39="source ~/venvs/ming-3.9/bin/activate"
 alias ve37="source ~/venvs/ming-3.7/bin/activate"
+alias ve50="source ~/omscs-local/cs6250/venv/cs6250-pr1/bin/activate"
+alias veiis="source ~/venvs/cs6035-3.10/bin/activate"
 
 # quick access to directories
-alias cds="cd ~/PycharmProjects"
+alias cdp="cd ~/projects"
+alias cdo="cd ~/omscs-local/"
 
 # bare git repo for dotfiles
 alias dotgit='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
+# icloud drive
+alias cdi='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/docs/'
+
+# vscode projects
+# alias dcodesat='code --profile /Users/ming/Library/Mobile\ Documents/com~apple~CloudDocs/docs/omscs/vscodeworkspaces/cs6340.code-workspace'
+
+alias dcodegios='code --profile /Users/ming/Library/Mobile\ Documents/com~apple~CloudDocs/docs/omscs/vscodeworkspaces/ubuntu.code-workspace'
+
+alias sshu='ssh ming@mz-ubuntu'
+alias sshm='ssh cs6035@192.168.1.30'
+alias sshsd='ssh deck@steamdeck'
+
+# disable r built-in
+disable r
 
 # Functions
 
@@ -145,7 +168,41 @@ vimkt ()
 # {
 # 	alacritty -e vim $1 > ${MINGLOGS}/ming_alacritty_log.txt 2>&1 &
 # }
+#
+
+# create a new python virtual environment and activate it
+# create_venv venv_name
+cvenv ()
+{
+    echo "Creating new venv: $1"
+    echo "Using ${PYTHONPATH_BREW} with version $(${PYTHONPATH_BREW} --version)"
+    ${PYTHONPATH_BREW} -m venv ${VENVPATH}/$1
+source ${VENVPATH}/$1/bin/activate
+}
+
+# activate existing venv
+# activate_venv venv_name
+avenv () {
+source ${VENVPATH}/$1/bin/activate
+}
+
+# list contents of venv folder
+lvenvs () {
+  ls -l ${VENVPATH}
+}
+
+# delete an existing venv
+dvenv () {
+  echo "Will delete venv: ${VENVPATH}/$1. Press enter to continue."
+  read ans
+  rm -r ${VENVPATH}/$1
+}
+
+
 . /opt/homebrew/lib/python3.9/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+source /Users/ming/.config/op/plugins.sh
+export PATH="/opt/homebrew/opt/imagemagick@6/bin:$PATH"
