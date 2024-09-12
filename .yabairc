@@ -91,10 +91,7 @@ yabai -m rule --add app="Installer" manage=off
 yabai -m rule --add app="Steam Helper" manage=off
 yabai -m rule --add app="RuneLite" manage=off
 yabai -m rule --add app="Jagex Launcher" manage=off
-yabai -m rule --add app="TestFlight" manage=off
-yabai -m rule --add app="Parallels" manage=off
-yabai -m rule --add app="mingtest" manage=off  # mame stuff
-yabai -m rule --add app="rc87" manage=off  # mame stuff
+yabai -m rule --add app="CLion" manage=off
 yabai -m rule --add app="Microsoft Outlook" title="^New Event" manage=off
 yabai -m rule --add app="Microsoft Outlook" title="Settings$" manage=off
 yabai -m rule --add app="Microsoft Outlook" title="Extensions" manage=off
@@ -102,6 +99,7 @@ yabai -m rule --add app="Microsoft Outlook" title="Extensions" manage=off
 # fix floating windows from always being on top
 # https://github.com/koekeishiya/yabai/issues/1929#issuecomment-1872581528
 yabai -m rule --add app=".*" sub-layer=below
+yabai -m rule --add app="parsec*" sub-layer=below
 # yabai -m rule --add app=".*" sub-layer=normal
 
 # jankyborders

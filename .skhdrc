@@ -80,7 +80,7 @@ alt - f : yabai -m window --toggle zoom-fullscreen
 
 
 # toggle window split type
-alt - e : yabai -m window --toggle split
+ctrl + alt - e : yabai -m window --toggle split
 
 # switch layout
 ctrl + alt - a : yabai -m space --layout bsp
@@ -129,6 +129,6 @@ alt - t : yabai -m window --toggle float && yabai -m window --grid 4:4:1:1:2:2
 # alt - w : yabai -m window --toggle expose
 
 # toggle sticky(+float), topmost, picture-in-picture
-alt - p : yabai -m window --toggle sticky;\
-          yabai -m window --toggle topmost;\
-          yabai -m window --toggle pip
+# alt - p : yabai -m window --toggle sticky;\
+#           yabai -m window --toggle topmost;\
+#           yabai -m window --toggle pip

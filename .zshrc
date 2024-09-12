@@ -30,6 +30,9 @@ autoload -U select-word-style
 select-word-style bash
 export WORDCHARS='/'
 
+# add highlighting for man pages (uses bat)
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 # use emacs line editing keybindings to behave like bash
 bindkey -e
 
@@ -53,8 +56,8 @@ alias dotgit='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
 # plugins
 # i cloned them all to $ZSH/plugins
-fpath=($ZSH/plugins/zsh-completions/src $fpath)
-source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# fpath=($ZSH/plugins/zsh-completions/src $fpath)
+# source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # theme
@@ -67,3 +70,7 @@ source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source $ZSH/plugins/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+fpath=(~/.docker/completions \/usr/local/share/zsh/site-functions /usr/share/zsh/site-functions /usr/share/zsh/5.9/functions)
+autoload -Uz compinit
+compinit
