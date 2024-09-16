@@ -11,8 +11,8 @@
 # see this wiki page for information:
 #  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)
 #
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-sudo yabai --load-sa
+# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+# sudo yabai --load-sa
 
 # global settings
 yabai -m config debug_output                 on
@@ -46,12 +46,12 @@ yabai -m config top_padding    0
 yabai -m config bottom_padding 0
 
 # [ming] make space for stackline icons
-yabai -m config left_padding   40
-yabai -m config right_padding  40
-yabai -m config window_gap     10
+yabai -m config left_padding   3
+yabai -m config right_padding  3
+yabai -m config window_gap     3
 
 # [ming] add padding at top so vertical splits don't overlap
-yabai -m config external_bar all:10:10
+yabai -m config external_bar all:2:2
 
 # space configurations
 # mission-control desktop labels
@@ -103,7 +103,7 @@ yabai -m rule --add app="parsec*" sub-layer=below
 # yabai -m rule --add app=".*" sub-layer=normal
 
 # jankyborders
-borders active_color='gradient(top_left=0xff4FFFB6,bottom_right=0xffC3BFFF)' inactive_color=0x00000000 width=8 hidpi=on
+borders active_color='gradient(top_left=0xff4FFFB6,bottom_right=0xffC3BFFF)' inactive_color=0x00000000 width=5 hidpi=on
 
 
 

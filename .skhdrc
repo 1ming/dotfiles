@@ -88,6 +88,7 @@ ctrl + alt - d : yabai -m space --layout float
 ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
 
 # go to specified space
+# this requires scripting additions so i can't use them
 # alt - 1 : yabai -m space --focus 1
 # alt - 2 : yabai -m space --focus 2
 # alt - 3 : yabai -m space --focus 3
@@ -98,6 +99,7 @@ ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq 
 # alt - 8 : yabai -m space --focus 8
 
 # move window to a specified space
+# these don't require scripting additions (is that because we're moving and focusing windows as opposed to spaces?)
 shift + alt - 1 : win_id="$(yabai -m query --windows --window | jq -r '.id')" \
     && (yabai -m window --space 1 && yabai -m window --focus "$win_id")
 shift + alt - 2 : win_id="$(yabai -m query --windows --window | jq -r '.id')" \
@@ -114,6 +116,9 @@ shift + alt - 7 : win_id="$(yabai -m query --windows --window | jq -r '.id')" \
     && (yabai -m window --space 7 && yabai -m window --focus "$win_id")
 shift + alt - 8 : win_id="$(yabai -m query --windows --window | jq -r '.id')" \
     && (yabai -m window --space 8 && yabai -m window --focus "$win_id")
+
+# toggle icon type in stackline
+shift + alt - b :  hs -c 'stackline.config:toggle("appearance.showIcons")'
 
 # cycle all windows on space backwards by coordinate
 alt - tab : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | reverse | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"

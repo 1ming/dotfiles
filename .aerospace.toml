@@ -96,8 +96,8 @@ outer.right =      3
 # '''
 
 # disable macOS shortcut keys for hiding windows
-cmd-h = [] # Disable "hide application"
-cmd-alt-h = [] # Disable "hide others"
+# cmd-h = [] # Disable "hide application"
+# cmd-alt-h = [] # Disable "hide others"
 
 alt-f = 'fullscreen'
 
