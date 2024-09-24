@@ -47,11 +47,11 @@ ctrl + alt + cmd - k    : yabai -m window north --stack $(yabai -m query --windo
 ctrl + alt + cmd - l : yabai -m window east --stack $(yabai -m query --windows --window | jq -r '.id')
 
 # make floating window fill screen
-ctrl + alt + cmd - m     : yabai -m window --grid 1:1:0:0:1:1
+# ctrl + alt + cmd - m     : yabai -m window --grid 1:1:0:0:1:1
 
 # make floating window fill left-half of screen
-ctrl + alt + cmd - left   : yabai -m window --grid 1:2:0:0:1:1
-ctrl + alt + cmd - right  : yabai -m window --grid 1:2:2:0:1:1
+# ctrl + alt + cmd - left   : yabai -m window --grid 1:2:0:0:1:1
+# ctrl + alt + cmd - right  : yabai -m window --grid 1:2:2:0:1:1
 
 # focus other monitor
 ctrl + alt - z  : yabai -m display --focus next || yabai -m display --focus first
@@ -83,9 +83,9 @@ alt - f : yabai -m window --toggle zoom-fullscreen
 ctrl + alt - e : yabai -m window --toggle split
 
 # switch layout
-ctrl + alt - a : yabai -m space --layout bsp
-ctrl + alt - d : yabai -m space --layout float
-ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
+# ctrl + alt - a : yabai -m space --layout bsp
+# ctrl + alt - d : yabai -m space --layout float
+# ctrl + alt - s : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
 
 # go to specified space
 # this requires scripting additions so i can't use them
@@ -121,7 +121,7 @@ shift + alt - 8 : win_id="$(yabai -m query --windows --window | jq -r '.id')" \
 shift + alt - b :  hs -c 'stackline.config:toggle("appearance.showIcons")'
 
 # cycle all windows on space backwards by coordinate
-alt - tab : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | reverse | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"
+# alt - tab : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | reverse | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"
 
 # cycle all windows on space backwards by coordinate
 shift + alt - tab : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"

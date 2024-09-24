@@ -69,15 +69,16 @@ yabai -m config external_bar all:2:2
 
 # window rules
 yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="Calendar" manage=off
 yabai -m rule --add app="^1Password" manage=off
+yabai -m rule --add app="Bitwarden" manage=off
 yabai -m rule --add app="^Finder$" manage=off sticky=off
 yabai -m rule --add app="^Discord$" grid=1:1:0:0:1:1 manage=off
-yabai -m rule --add app="Preferences$" manage=off
 yabai -m rule --add title="Preferences$" manage=off
+yabai -m rule --add title="Settings$" manage=off
 yabai -m rule --add app="^Activity Monitor$" manage=off
 yabai -m rule --add app="Messages" manage=off
 yabai -m rule --add title="^Honorlock Proctoring$" manage=off
-yabai -m rule --add app="Things" title="General" manage=off
 yabai -m rule --add app="System Settings" manage=off
 yabai -m rule --add app="ToothFairy" manage=off
 yabai -m rule --add app="Tot" manage=off
@@ -92,9 +93,8 @@ yabai -m rule --add app="Steam Helper" manage=off
 yabai -m rule --add app="RuneLite" manage=off
 yabai -m rule --add app="Jagex Launcher" manage=off
 yabai -m rule --add app="CLion" manage=off
-yabai -m rule --add app="Microsoft Outlook" title="^New Event" manage=off
-yabai -m rule --add app="Microsoft Outlook" title="Settings$" manage=off
-yabai -m rule --add app="Microsoft Outlook" title="Extensions" manage=off
+yabai -m rule --add app="Stickies" manage=off
+yabai -m rule --add app="Arc" title="^Sign in" manage=off
 
 # fix floating windows from always being on top
 # https://github.com/koekeishiya/yabai/issues/1929#issuecomment-1872581528
@@ -102,8 +102,26 @@ yabai -m rule --add app=".*" sub-layer=below
 yabai -m rule --add app="parsec*" sub-layer=below
 # yabai -m rule --add app=".*" sub-layer=normal
 
+
+# https://github.com/koekeishiya/yabai/issues/1317#issuecomment-2122833942
+yabai -m signal --add event=window_created action='
+  yabai -m query --windows --window $yabai_window_id | jq -er ".\"can-resize\" or .\"is-floating\"" || \
+  yabai -m window $yabai_window_id --toggle float --layer above --grid 4:4:1:1:2:2
+'
+# yabai -m signal --add event=window_created action='
+#   yabai -m query --windows --window $yabai_window_id | jq -er ".\"can-resize\" or .\"is-floating\"" || \
+#   yabai -m window $yabai_window_id --toggle float --layer above
+# '
+
+# make yabai focus the window under the cursor if we lose focus after
+# closing a window (e.g. finder)
+# https://github.com/koekeishiya/yabai/issues/692#issuecomment-710810388
+yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
+yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
+
 # jankyborders
-borders active_color='gradient(top_left=0xff4FFFB6,bottom_right=0xffC3BFFF)' inactive_color=0x00000000 width=5 hidpi=on
+# using experimental setting to make the border appear above the window: https://github.com/FelixKratz/JankyBorders/issues/37#issuecomment-1871262622
+borders active_color='gradient(top_left=0xff4FFFB6,bottom_right=0xffC3BFFF)' inactive_color=0x00000000 width=3 hidpi=on order=above
 
 
 
