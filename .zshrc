@@ -36,9 +36,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # use emacs line editing keybindings to behave like bash
 bindkey -e
 
-# disable r built-in
-disable r
-
 # intel version of brew installed
 # https://diewland.medium.com/how-to-install-python-3-7-on-macbook-m1-87c5b0fcb3b5
 alias ibrew="arch -x86_64 /usr/local/bin/brew"
@@ -57,7 +54,7 @@ alias dotgit='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 # plugins
 # i cloned them all to $ZSH/plugins
 # fpath=($ZSH/plugins/zsh-completions/src $fpath)
-# source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZSH/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # theme
