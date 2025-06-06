@@ -49,17 +49,20 @@ source $ZSH/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # prompt stuff
 # starship prompt
 # currently still using p10k for now, but uncomment to switch
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"
 
 # p10k theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source $ZSH/plugins/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# source $ZSH/plugins/powerlevel10k/powerlevel10k.zsh-theme
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
 # keybindings
 # use emacs line editing keybindings to behave like bash
 bindkey -e
+
+# prevent Ctrl+U from deleting the entire line
+bindkey "^U" backward-kill-line
 
 
 # aliases
@@ -77,3 +80,10 @@ alias cdi='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/docs/'
 
 # bare git repo for dotfiles
 alias dotgit='git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+

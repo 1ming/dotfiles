@@ -1,0 +1,71 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[](back)\
+$directory\
+([│](bg:back fg:grey)$git_branch$git_status)\
+[](back)\
+${fill}\
+([ ](back)$nodejs[](back))\
+([ ](back)$python[](back))\
+([ ](back)$docker_context[](back))\
+$line_break\
+$character\
+"""
+
+palette = 'ming'
+
+# using shell-agnostic right prompt workaround: https://github.com/starship/starship/issues/3177#issuecomment-954754294
+# since right prompt with 2 lines shows right side of prompt on second line: https://github.com/starship/starship/discussions/6667
+[fill]
+symbol = " "
+
+[directory]
+style = "bg:back fg:blue"
+format = "[$read_only]($read_only_style)[$path]($style)"
+read_only = " "
+read_only_style = "bg:back fg:red"
+truncation_length = 8
+truncation_symbol = "…/"
+truncate_to_repo = false
+
+[git_branch]
+symbol = ""
+style = "fg:green bg:back"
+format = '[$symbol $branch]($style)'
+
+[git_status]
+style = "fg:green bg:back"
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+format = '[ $all_status$ahead_behind]($style)'
+
+[nodejs]
+symbol = ""
+style = "fg:yellow bg:back"
+format = '[$symbol($version)]($style)'
+
+[python]
+symbol = ""
+style = "fg:green bg:back"
+format = '[$symbol$virtualenv]($style)'
+
+[docker_context]
+symbol = "󰡨"
+style = "bg:back fg:blue"
+only_with_files = false
+format ="[$symbol$context]($style)"
+
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[✕](bold red)'
+
+[palettes.ming]
+back = "#303030"
+grey = "#8B949E"
+red = "#ed8796"
+yellow = "#eed49f"
+green = "#a6da95"
+blue = "#0089B3"
+
