@@ -95,6 +95,14 @@ yabai -m rule --add app="Jagex Launcher" manage=off
 yabai -m rule --add app="CLion" manage=off
 yabai -m rule --add app="Stickies" manage=off
 yabai -m rule --add app="Arc" title="^Sign in" manage=off
+yabai -m rule --add app="Heroic" manage=off
+yabai -m rule --add app="wine" manage=off
+yabai -m rule --add app="Electron" manage=off
+yabai -m rule --add app="apps-prj" manage=off
+yabai -m rule --add app="Deskflow" manage=off
+yabai -m rule --add app="Ghidra" manage=off
+yabai -m rule --add app="Godot" manage=off
+# yabai -m rule --add app="scream.exe" manage=off
 
 # fix floating windows from always being on top
 # https://github.com/koekeishiya/yabai/issues/1929#issuecomment-1872581528

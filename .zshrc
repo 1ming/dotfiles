@@ -17,7 +17,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 # ===
 
-export PATH="/opt/homebrew/opt/python@3.9/libexec/bin:/opt/homebrew/bin:/usr/local/opt/python/libexec/bin:$PATH"
 export ZSH=$HOME/.zsh
 
 # add highlighting for man pages (uses bat)
@@ -87,3 +86,6 @@ export NVM_DIR="$HOME/.nvm"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
